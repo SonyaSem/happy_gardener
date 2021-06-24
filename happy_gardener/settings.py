@@ -72,7 +72,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'happy_gardener.wsgi.application'
 
-LOGIN_REDIRECT_URL = '/plant_list'
+LOGIN_REDIRECT_URL = '/'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
