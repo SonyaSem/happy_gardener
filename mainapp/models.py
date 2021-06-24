@@ -2,6 +2,9 @@ from django.db import models
 
 
 # Create your models here.
+from django.urls import reverse
+
+
 class Category(models.Model):
     title = models.CharField(max_length=250, verbose_name="Вид растения")
 
@@ -22,6 +25,9 @@ class Plant(models.Model):
 
     def __str__(self):
         return str(self.title)
+
+    def get_absolute_url(self):
+        return reverse('plant_detail_view', kwargs={'pk': self.pk})
 
     class Meta:
         verbose_name = "Растение"

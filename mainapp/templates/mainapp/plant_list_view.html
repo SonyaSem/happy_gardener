@@ -2,7 +2,8 @@
 
     {% for plant in plants %}
 
-        <p>{{ plant.title }}</p>
+
+        <a href="{{plant.get_absolute_url}}"> {{ plant.title }} </a>
 
     {% endfor %}
 
