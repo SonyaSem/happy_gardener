@@ -11,6 +11,14 @@ class PlantListView(ListView):
     template_name = 'mainapp/plant_list_view.html'
     context_object_name = 'plants'
 
-    # выбираю только темы, относящиеся к конкретной категории
+    def get_queryset(self):
+        return Plant.objects.all()
+
+
+class PlantDetailView(ListView):
+    model = Plant
+    template_name = 'mainapp/plant_detail_view.html'
+    context_object_name = 'one_plant'
+
     def get_queryset(self):
         return Plant.objects.all()

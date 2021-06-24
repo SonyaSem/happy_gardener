@@ -1,0 +1,15 @@
+{% block content %}
+
+{% for plant in one_plant%}
+
+<p>{{ plant.title }}</p>
+<p>{{ plant.category }}</p>
+<p>{{ plant.description }}</p>
+<p>{{ plant.place_of_purchase }}</p>
+<p>{{ plant.price }}</p>
+
+
+    {% endfor %}
+
+
+{% endblock %}

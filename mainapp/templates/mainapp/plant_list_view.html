@@ -1,17 +1,9 @@
 {% block content %}
 
-{% for plant in plants%}
+    {% for plant in plants %}
 
-<p>{{ plant.title }}</p>
-<p>{{ plant.category }}</p>
-<p>{{ plant.description }}</p>
-<p>{{ plant.place_of_purchase }}</p>
-<p>{{ plant.price }}</p>
-
-
-
+        <p>{{ plant.title }}</p>
 
     {% endfor %}
-
 
 {% endblock %}
