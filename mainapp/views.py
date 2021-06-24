@@ -1,9 +1,12 @@
+from django.contrib.auth.models import User
+from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render
 
 # Create your views here.
-from django.views.generic import ListView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView
 
-from mainapp.forms import AddPlantForm
+from mainapp.forms import AddPlantForm, CreateUserForm
 from mainapp.models import Category, Plant
 
 
@@ -35,3 +38,15 @@ def add_plant(request):
     context = {'form': plant_form}
 
     return render(request, 'mainapp/add_plant.html', context)
+
+
+# регистрация пользователей
+class RegisterUserView(CreateView, SuccessMessageMixin):
+    model = User
+    template_name = "mainapp/register.html"
+    form_class = CreateUserForm
+    # my_super_categories - имя маршрута из urls для перехода после успешной регистрации
+    success_url = reverse_lazy('plant_list_view')
+
+    # вывод сообщения об успешной регистрации в Index.html
+    success_message = "Вы успешно зарегистрировались!"
