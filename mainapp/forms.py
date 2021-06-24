@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 
 from mainapp.models import Plant
@@ -24,3 +24,10 @@ class CreateUserForm(UserCreationForm):
     error_messages = {
         'password_mismatch': ('Введенные пароли не совпадают'),
     }
+
+
+class UserLoginForm(AuthenticationForm):
+    username = forms.CharField(label="Имя пользователя", widget=forms.TextInput(
+        attrs={"placeholder": "Введите имя пользователя"}))
+    password = forms.CharField(label="Пароль",
+                               widget=forms.PasswordInput(attrs={"placeholder": "Введите пароль"}))

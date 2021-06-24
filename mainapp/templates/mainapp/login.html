@@ -1,0 +1,34 @@
+
+
+ {% block title %}
+       <title>Вход</title>
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+Вы уже вошли в систему
+
+{% else %}
+
+      <div>
+    {% if form.errors %}
+    <div class="danger" role="alert">
+       Вы ввели неправильное имя пользователя или пароль
+    </div>
+    {% endif %}
+    </div>
+
+<form method="POST">
+    {% csrf_token %}
+
+  {{ form.as_p }}
+
+   <button>Вход</button>
+
+</form>
+
+{% endif %}
+
+{% endblock %}
