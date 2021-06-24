@@ -33,6 +33,7 @@ class Plant(models.Model):
     def get_absolute_url(self):
         return reverse('plant_detail_view', kwargs={'pk': self.pk})
 
+
     class Meta:
         verbose_name = "Растение"
         verbose_name_plural = "Растения"
