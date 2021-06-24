@@ -21,4 +21,4 @@ class PlantDetailView(ListView):
     context_object_name = 'one_plant'
 
     def get_queryset(self):
-        return Plant.objects.all()
+        return Plant.objects.get(pk=self.kwargs['pk'])
