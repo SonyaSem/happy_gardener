@@ -2,10 +2,14 @@
 
 {% block content %}
 
-<p>{{ one_plant.title }}</p>
-<p>{{ one_plant.category }}</p>
-<p>{{ one_plant.description }}</p>
-<p>{{ one_plant.place_of_purchase }}</p>
-<p>{{ one_plant.price }}</p>
+<p>Наименование - {{ one_plant.title }}</p>
+<p>Вид - {{ one_plant.category }}</p>
+<p>Описание - {{ one_plant.description }}</p>
+<p>Место покупки - {{ one_plant.place_of_purchase }}</p>
+<p>Цена - {{ one_plant.price }}</p>
+<p>Дата покупки - {{ one_plant.date_of_purchase }}</p>
+<p>Дата посадки - {{ one_plant.date_of_plant }}</p>
+<p>Дата сбора урожая - {{ one_plant.date_of_collect }}</p>
+<p>Дата последнего полива - {{ one_plant.date_of_last_water }}</p>
 
 {% endblock %}

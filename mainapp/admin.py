@@ -9,7 +9,9 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class PlantAdmin(admin.ModelAdmin):
-    list_display = ('category', 'title', 'description', 'place_of_purchase', 'price',)
+    list_display = (
+    'category', 'title', 'description', 'place_of_purchase', 'price', 'date_of_purchase', 'date_of_plant',
+    'date_of_collect', 'date_of_last_water')
 
 
 admin.site.register(Plant, PlantAdmin)
