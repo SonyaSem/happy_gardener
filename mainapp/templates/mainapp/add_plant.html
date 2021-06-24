@@ -1,12 +1,14 @@
+{% include 'mainapp/_navbar.html' %}
+
 {% block content %}
-    
-<form method="POST">
-    {% csrf_token %}
 
-    {{ form.as_p }}
+    <form method="POST">
+        {% csrf_token %}
 
-   <button>Добавить растение</button>
+        {{ form.as_p }}
 
-</form>
+        <button>Добавить растение</button>
+
+    </form>
 
 {% endblock %}
