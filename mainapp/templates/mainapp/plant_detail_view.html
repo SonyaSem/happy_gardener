@@ -7,16 +7,16 @@
 <h1 style="">{{ one_plant.title }} - {{ one_plant.category }}</h1>
 <div>
 <strong style="font-size:20px">Cостояние: Надо полить</strong>
-<strong style="font-size:20px;float:right;margin-right:200px">Дата посадки: {{ one_plant.date_of_plant }}</strong> <br>
+<strong style="font-size:20px;float:right;margin-right:50px">Дата посадки: {{ one_plant.date_of_plant }}</strong> <br>
 <strong style="font-size:20px">Место покупки: {{ one_plant.place_of_purchase }}</strong>
-<strong style="font-size:20px;float:right;margin-right:200px">Интервал полива: 10 дней</strong> <br>
+<strong style="font-size:20px;float:right;margin-right:50px">Интервал полива: 10 дней</strong> <br>
 <strong style="font-size:20px">Цена: {{ one_plant.price }}</strong>
-<strong style="font-size:20px;float:right;margin-right:200px">Дата последнего полива: {{ one_plant.date_of_last_water }}</strong> <br>
+<strong style="font-size:20px;float:right;margin-right:50px">Дата последнего полива: {{ one_plant.date_of_last_water }}</strong> <br>
 <strong style="font-size:20px">Дата покупки: {{ one_plant.date_of_purchase }}</strong>
-<strong style="font-size:20px;float:right;margin-right:200px">Дата сбора: {{ one_plant.date_of_collect }}</strong> <br>
-    <button class="shine-button" style="font-size:20px;width:250px">Изменить</button>
-    <button class="shine-button" style="font-size:20px;width:250px">Поделиться</button>
-    <button class="shine-button shine-button-red" style="font-size:20px;width:250px">Удалить</button>
+<strong style="font-size:20px;float:right;margin-right:50px">Дата сбора: {{ one_plant.date_of_collect }}</strong> <br>
+    <button class="shine-button" style="font-size:20px;width:200px">Изменить</button>
+    <button class="shine-button" style="font-size:20px;width:200px">Поделиться</button>
+    <button class="shine-button shine-button-red" style="font-size:20px;width:200px">Удалить</button>
     </div>
-<h2 style="margin:10px 10px 10px 10px">{{ one_plant.description }}</h2>
+<h2 style="margin:20px 10px 20px 10px">{{ one_plant.description }}</h2>
 {% endblock %}
