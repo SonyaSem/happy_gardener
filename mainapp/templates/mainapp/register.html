@@ -1,14 +1,18 @@
-{% include 'mainapp/_navbar.html' %}
+{% extends 'mainapp/base.html' %}
 
 {% block content %}
+<div style="text-align:center">
+    <div style="margin:20px 0px 0px 35%;width:400px;height:400px;background-color:#3affbf">
+<form method="POST">
+    {% csrf_token %}
+    <br>
+  {{ form.as_p }}
+       <button class="shine-button">Зарегистрироваться</button>
 
-    <form method="POST">
-        {% csrf_token %}
 
-        {{ form.as_p }}
 
-        <button>Зарегистрироваться</button>
-
-    </form>
+</form>
+</div>
+</div>
 
 {% endblock %}
