@@ -8,8 +8,8 @@ from mainapp.models import Plant
 class AddPlantForm(forms.ModelForm):
     class Meta:
         model = Plant
-        fields = ('category', 'title', 'description', 'place_of_purchase', 'price', 'date_of_purchase', 'date_of_plant',
-    'date_of_collect', 'date_of_last_water')
+        fields = ('category', 'title', 'place_of_purchase', 'price', 'date_of_purchase', 'date_of_plant',
+    'date_of_collect', 'date_of_last_water', 'description')
 
 
 class CreateUserForm(UserCreationForm):
