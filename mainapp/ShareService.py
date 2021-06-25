@@ -19,7 +19,7 @@ def share_to_instagram(login: str, password: str, images:List[Path], caption: st
         Post caprion (max length = 2200)
     """
     if len(caption) <= 2200 and len(images) <= 10:
-        bot = Client()
+        bot =Client()
         bot.login(login, password)
         bot.album_upload(images, caption=caption)
 
