@@ -1,15 +1,18 @@
-{% include 'mainapp/_navbar.html' %}
+{% extends 'mainapp/base.html' %}
+
 
 {% block content %}
 
     <form method="POST">
+<div style="text-align:center">
         {% csrf_token %}
-
         {{ form.as_p }}
-
-        <button>Добавить растение</button>
-
         <input required name="image" type="file" class="form-control-file">
+    <br>
+        <button class="shine-button">Добавить растение</button>
+<br><br><br><br>
+
+    </div>
     </form>
 
 {% endblock %}
