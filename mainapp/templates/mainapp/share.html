@@ -15,23 +15,13 @@
 <body>
 <form action=>
 
-	<!-- Просто человеческая кнопка, в которой все понятно -->
-<button
-  onclick="location.href='https://vk.com/share.php?url=http://mysite.com' +
-    '&title=hello' +
-    '&image=https://image.freepik.com/free-icon/jpg-extension_318-1831.jpg' +
-    '&noparse=true'"
-  type="button"
-  style="background-color:transparent; border-color:transparent;">
-  <img src="https://vk.com/images/share_32.png" height="35"/>
-	</button>
-
-
 <!-- Какая-то умная кнопка со скриптом от разрабов вк -->
-<!-- Put this script tag to the place, where the Share button will be -->
-<script type="text/javascript"><!--
-	document.write(VK.Share.button(false,{type: "custom", text: "<img src=\"https://vk.com/images/share_32.png\" width=\"32\" height=\"32\" />"}));
+<script type="text/javascript">
+	document.write(VK.Share.button({url:'http://mysite.com', title: 'сайтик',image:'https://image.freepik.com/free-icon/jpg-extension_318-1831.jpg'},
+		{type: "custom", text: "<img src=\"https://vk.com/images/share_32.png\" width=\"32\" height=\"32\" />"}));
 </script>
+
+
 </body>
 </html>
 
