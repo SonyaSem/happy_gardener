@@ -71,5 +71,9 @@ class Insta_share_choice(DetailView):
 
 
 def share_preview(request):
-    messages.error(request, 'Yo!')
+    if request.method=='POST':
+
+        choosen_data_for_post = request.POST.getlist('check')
+
+        #messages.error(request, fields)
     return render(request, 'mainapp/Insta_Post_preview.html')

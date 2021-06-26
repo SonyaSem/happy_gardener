@@ -1,32 +1,35 @@
 
 <h3>Выберите поля, текст которых нужно добавить в пост</h3>
+<!-- кто-то умный должен сделать из этого цикл. -->
+<form action="{% url 'inst_share_preview' %}" method="post">
+	{% csrf_token %}
+	<input type="checkbox" name ="check" value="{{ one_plant.title }}" >
+	Наименование: {{ one_plant.title }}
+	</input><br>
+	<input type="checkbox" name="check" value="{{ one_plant.category }}">
+	Вид: {{ one_plant.category }}
+	</input><br>
+	<input type="checkbox" name="check" value="{{ one_plant.description }}">
+	Описание: {{ one_plant.description }}
+	</input><br>
+	<input type="checkbox" name="check" value="{{ one_plant.place_of_purchace }}">
+	Место покупки: {{ one_plant.place_of_purchace }}
+	</input><br>
+	<input type="checkbox" name="check" value="{{ one_plant.date_of_purchase }}">
+	Дата покупки :{{ one_plant.date_of_purchase }}
+	</input><br>
+	<input type="checkbox" name="check" value="{{ one_plant.date_of_place }}">
+	Дата посадки: {{ one_plant.date_of_place }}
+	</input><br>
+	<input type="checkbox" name="check" value= "{{ one_plant.date_of_collect }} ">
+	Дата сбора: {{ one_plant.date_of_collect }}
+	</input><br>
+	<input type="checkbox" name="water_date" value= "{{ one_plant.date_of_last_water }}">
+	Дата последнего полива: {{ one_plant.date_of_last_water }}
+	</input><br>
+	<!-- какой-нибудь цикл с выводом изображений с чекбоксами -->
 
-<input type="checkbox" value={{ one_plant.title }}>
-Наименование: {{ one_plant.title }}
-</input><br>
-<input type="checkbox" value=>
-Вид: {{ one_plant.category }}
-</input><br>
-<input type="checkbox" value=>
-Описание: {{ one_plant.description }}
-</input><br>
-<input type="checkbox" value={{ one_plant.place_of_purchace }}>
-Место покупки: {{ one_plant.place_of_purchace }}
-</input><br>
-<input type="checkbox" value={{ one_plant.date_of_purchase }}>
-Дата покупки :{{ one_plant.date_of_purchase }}
-</input><br>
-<input type="checkbox" value={{ one_plant.date_of_place }}>
-Дата посадки: {{ one_plant.date_of_place }}
-</input><br>
-<input type="checkbox" value= {{ one_plant.date_of_collect }} >
-Дата сбора: {{ one_plant.date_of_collect }}
-</input><br>
-<input type="checkbox" value= {{ one_plant.date_of_last_water }}>
-Дата последнего полива: {{ one_plant.date_of_last_water }}
-</input><br>
-<!-- какой-нибудь цикл с выводом изображений с чекбоксами -->
-
-<a href="{% url 'inst_share_preview' %}">
-	<button type="submit" >Перейти к предпросмотру поста</button>
-</a>
+	<a href="{% url 'inst_share_preview' %}">
+		<button type="submit" >Перейти к предпросмотру поста</button>
+	</a>
+</form>
