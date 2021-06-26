@@ -36,3 +36,12 @@ class Plant(models.Model):
     class Meta:
         verbose_name = "Растение"
         verbose_name_plural = "Растения"
+
+
+class Photo (models.Model):
+    plant = models.ForeignKey(Plant, on_delete=models.SET_NULL, null=True, blank=True)
+    image = models.ImageField(null=False, blank=False)
+    comment = models.TextField()
+
+    def __str__(self):
+        return str(self.comment)
