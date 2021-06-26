@@ -9,7 +9,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView
 
 from mainapp.forms import AddPlantForm, CreateUserForm, UserLoginForm
-from mainapp.models import Category, Plant
+from mainapp.models import Category, Plant, Photo
 
 
 class PlantListView(ListView):
@@ -32,12 +32,35 @@ class PlantDetailView(ListView):
 
 def add_plant(request):
     if request.method == 'POST':
-        plant_form = AddPlantForm(request.POST)
-        if plant_form.is_valid():
-            plant_form.save()
+        # images will be in request.FILES
+        form = AddPlantForm(request.POST or None, request.FILES or None)
+        files = request.FILES.getlist('images')
+        if form.is_valid():
+            title = form.cleaned_data['title']
+            category = form.cleaned_data['category']
+            description = form.cleaned_data['description']
+            place_of_purchase = form.cleaned_data['place_of_purchase']
+            date_of_purchase = form.cleaned_data['date_of_purchase']
+            price = form.cleaned_data['price']
+            date_of_plant = form.cleaned_data['date_of_plant']
+            date_of_collect = form.cleaned_data['date_of_collect']
+            date_of_last_water = form.cleaned_data['date_of_last_water']
+
+            plant_obj = Plant.objects.create(title=title,
+                                             category=category, description=description,
+                                             place_of_purchase=place_of_purchase,
+                                             date_of_purchase=date_of_purchase, price=price,
+                                             date_of_plant=date_of_plant,
+                                             date_of_collect=date_of_collect, date_of_last_water=date_of_last_water)
+            for file in files:
+                Photo.objects.create(plant=plant_obj, image=file)
+
+        else:
+            print("Form invalid")
+
     else:
-        plant_form = AddPlantForm()
-    context = {'form': plant_form}
+        form = AddPlantForm()
+    context = {'form': form}
 
     return render(request, 'mainapp/add_plant.html', context)
 

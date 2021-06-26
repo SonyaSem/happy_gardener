@@ -5,11 +5,15 @@
     <form method="POST">
         {% csrf_token %}
 
-        {{ form.as_p }}
+        {{form.as_p}}
 
         <button>Добавить растение</button>
 
-        <input required name="image" type="file" class="form-control-file">
+
+
+    <label for="note-image">Images</label>
+    <input type="file" name="images" class="form-control-file" id="note-image" multiple>
+
     </form>
 
 {% endblock %}

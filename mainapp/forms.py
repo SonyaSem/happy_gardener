@@ -32,3 +32,6 @@ class UserLoginForm(AuthenticationForm):
         attrs={"placeholder": "Введите имя пользователя"}))
     password = forms.CharField(label="Пароль",
                                widget=forms.PasswordInput(attrs={"placeholder": "Введите пароль"}))
+
+class PhotoForm(AddPlantForm):
+    images = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}))

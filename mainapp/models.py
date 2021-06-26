@@ -40,8 +40,7 @@ class Plant(models.Model):
 
 class Photo (models.Model):
     plant = models.ForeignKey(Plant, on_delete=models.SET_NULL, null=True, blank=True)
-    image = models.ImageField(null=False, blank=False)
-    comment = models.TextField()
+    image = models.FileField(upload_to = 'images/')
 
     def __str__(self):
-        return str(self.comment)
+        return self.plant.title
