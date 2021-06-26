@@ -11,6 +11,6 @@ urlpatterns = [
     path('register/', RegisterUserView.as_view(), name='register'),
     path('login/', UserLoginView.as_view(), name='login'),
     path('logout/', user_logout, name='logout'),
-    path('instapreshare/<int:pk>', Insta_share_choice.as_view(), name='instagram_share_choice')
+    path('plant_detail/<int:pk>/instapreshare', Insta_share_choice.as_view(), name='instagram_share_choice')
 
 ]
