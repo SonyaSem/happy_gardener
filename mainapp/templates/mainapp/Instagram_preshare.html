@@ -3,28 +3,28 @@
 <!-- кто-то умный должен сделать из этого цикл. -->
 <form action="{% url 'inst_share_preview' %}" method="post">
 	{% csrf_token %}
-	<input type="checkbox" name ="check" value="{{ one_plant.title }}" >
+	<input type="checkbox" name ="check" value="Растение: {{ one_plant.title }} &#13;&#10" >
 	Наименование: {{ one_plant.title }}
 	</input><br>
-	<input type="checkbox" name="check" value="{{ one_plant.category }}">
+	<input type="checkbox" name="check" value="Вид: {{ one_plant.category }} &#13;&#10">
 	Вид: {{ one_plant.category }}
 	</input><br>
-	<input type="checkbox" name="check" value="{{ one_plant.description }}">
+	<input type="checkbox" name="check" value="Описание: {{ one_plant.description }} &#13;&#10">
 	Описание: {{ one_plant.description }}
 	</input><br>
-	<input type="checkbox" name="check" value="{{ one_plant.place_of_purchace }}">
+	<input type="checkbox" name="check" value="Было куплено: {{ one_plant.place_of_purchace }}">
 	Место покупки: {{ one_plant.place_of_purchace }}
 	</input><br>
-	<input type="checkbox" name="check" value="{{ one_plant.date_of_purchase }}">
+	<input type="checkbox" name="check" value="{{ one_plant.date_of_purchase }} &#13;&#10">
 	Дата покупки :{{ one_plant.date_of_purchase }}
 	</input><br>
-	<input type="checkbox" name="check" value="{{ one_plant.date_of_place }}">
+	<input type="checkbox" name="check" value="Посажено: {{ one_plant.date_of_place }} &#13;&#10">
 	Дата посадки: {{ one_plant.date_of_place }}
 	</input><br>
-	<input type="checkbox" name="check" value= "{{ one_plant.date_of_collect }} ">
+	<input type="checkbox" name="check" value= "Дата сбора: {{ one_plant.date_of_collect }} &#13;&#10">
 	Дата сбора: {{ one_plant.date_of_collect }}
 	</input><br>
-	<input type="checkbox" name="water_date" value= "{{ one_plant.date_of_last_water }}">
+	<input type="checkbox" name="water_date" value= "Последний полив: {{ one_plant.date_of_last_water }}&#13;&#10">
 	Дата последнего полива: {{ one_plant.date_of_last_water }}
 	</input><br>
 	<!-- какой-нибудь цикл с выводом изображений с чекбоксами -->

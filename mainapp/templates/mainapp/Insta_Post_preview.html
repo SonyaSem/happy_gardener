@@ -15,14 +15,21 @@
 {% endif %}
 
 <form method="post">
-
-	<textarea>
-
-	</textarea>
+	<label>Описание:</label>
+	{% csrf_token %}
+	<!--просто текст поста -->
+	<textarea class="form-control" rows="5" name="caption">{{ text }}</textarea>
+	<label>Фото:</label>
+	<!--приложенные фото -->
+	<!--форма для входа в инсту -->
+	<label>Укажите данные от вашего аккаунта Instagram:</label>
+	<input type="text"  class="form-control-plaintext" placeholder="Имя пользователя" name="login">
+	<input type="password" class="form-control" placeholder="Пароль" name="password">
+	<a href="{% url 'inst_share_preview' %}">
+		<button type="submit" >Запостить</button>
+	</a>
 </form>
 
-<h2>
-	{{ text }}
-</h2>
+
 <!-- Здесь цикл с изображениями -->
 

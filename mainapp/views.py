@@ -12,7 +12,7 @@ from django.views.generic import ListView, CreateView, DetailView
 
 from mainapp.forms import AddPlantForm, CreateUserForm, UserLoginForm
 from mainapp.models import Category, Plant
-
+from . import ShareService
 
 
 
@@ -70,10 +70,25 @@ class Insta_share_choice(DetailView):
     context_object_name = 'one_plant'
 
 
-def share_preview(request):
+def instagram_share_preview(request):
     if request.method=='POST':
-
         choosen_data_for_post = request.POST.getlist('check')
+        final_text=''.join(choosen_data_for_post)
+        if len(final_text)> ShareService.INSTAGRAM_MAX_CAPTION_SIMBOLS_AMOUNT:
+            messages.error(request, "Внимание, количество символов описания было превышено на "+
+                           str(len(final_text)-ShareService.INSTAGRAM_MAX_CAPTION_SIMBOLS_AMOUNT)+" символов")
+    return render(request, 'mainapp/Insta_Post_preview.html', {'text': final_text})
 
-        #messages.error(request, fields)
-    return render(request, 'mainapp/Insta_Post_preview.html')
+def post_to_insta(request):
+    if request.method=='POST':
+        caption = request.POST.getlist('caption')
+        if len(caption)>ShareService.INSTAGRAM_MAX_CAPTION_SIMBOLS_AMOUNT:
+            messages.error(request, "Внимание, количество символов описания было превышено на " +
+                           str(len(caption) - ShareService.INSTAGRAM_MAX_CAPTION_SIMBOLS_AMOUNT) + " символов")
+        else:
+            ShareService.share_to_instagram(request.POST.getlist('login'),
+                                            request.POST.getlist('password'),
+                                            #сюда вставить список с путями к картинкам,
+                                            request.POST.getlist(caption))
+            messages.success(request,"Пост был успешно отправлен в инстграм")
+    return render(request, 'mainapp/Insta_Post_preview.html', {'text': caption})
