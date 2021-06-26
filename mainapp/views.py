@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DetailView
 
 from mainapp.forms import AddPlantForm, CreateUserForm, UserLoginForm
 from mainapp.models import Category, Plant
@@ -54,6 +54,14 @@ class UserLoginView(LoginView):
     authentication_form = UserLoginForm
     template_name = "mainapp/login.html"
 
+
 def user_logout(request):
     logout(request)
     return redirect('plant_list_view')
+
+
+class Insta_share_choice(DetailView):
+    model = Plant
+    template_name = 'mainapp/Instagram_preshare.html'
+    context_object_name = 'one_plant'
+
