@@ -15,6 +15,8 @@
 <p>Дата посадки - {{ one_plant.date_of_plant }}</p>
 <p>Дата сбора урожая - {{ one_plant.date_of_collect }}</p>
 <p>Дата последнего полива - {{ one_plant.date_of_last_water }}</p>
+    <img src="{{ one_plant.photo.url }}" alt="">
+
 
 <!--я  не дизайнер, поэтому просто кнопка-->
 <button type="button" onclick="location.href='{% url 'instagram_share_choice' one_plant.id %}'">Поделиться в инсте</button>
@@ -22,4 +24,3 @@
 
 	{% block body_vk_share %} {% endblock %}
 {% endblock %}
-{% include 'mainapp/vk_share.html'%}<!-- Кнопка поделиться в вк. В идеале в нее еще нужно добавить картинку/ссылку -->

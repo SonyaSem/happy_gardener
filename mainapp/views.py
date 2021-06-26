@@ -36,7 +36,7 @@ class PlantDetailView(ListView):
 
 def add_plant(request):
     if request.method == 'POST':
-        plant_form = AddPlantForm(request.POST)
+        plant_form = AddPlantForm(request.POST, request.FILES)
         if plant_form.is_valid():
             plant_form.save()
     else:

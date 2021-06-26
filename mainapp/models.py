@@ -19,6 +19,7 @@ class Category(models.Model):
 class Plant(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="plant")
     title = models.CharField(max_length=256, verbose_name="Название растения", unique=True)
+    photo = models.ImageField(verbose_name="Фото", upload_to='static', null=True, blank=True)
     description = models.TextField(verbose_name="Описание растения")
     date_of_plant = models.DateField(default=date.today, verbose_name="Дата посадки", null=True)
     place_of_purchase = models.CharField(max_length=256, verbose_name="Место покупки")
