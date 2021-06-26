@@ -2,6 +2,8 @@ from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib import  messages
+
 from django.shortcuts import render, redirect
 
 # Create your views here.
@@ -10,6 +12,8 @@ from django.views.generic import ListView, CreateView, DetailView
 
 from mainapp.forms import AddPlantForm, CreateUserForm, UserLoginForm
 from mainapp.models import Category, Plant
+
+
 
 
 class PlantListView(ListView):
@@ -65,3 +69,7 @@ class Insta_share_choice(DetailView):
     template_name = 'mainapp/Instagram_preshare.html'
     context_object_name = 'one_plant'
 
+
+def share_preview(request):
+    messages.error(request, 'Yo!')
+    return render(request, 'mainapp/Insta_Post_preview.html')

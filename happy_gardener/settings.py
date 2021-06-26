@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
-
+from django.contrib.messages import constants as message_const
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -127,4 +127,14 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#настройка цветов сообщений (чтобы красиво было :) )
+
+MESSAGE_TAGS ={
+    message_const.DEBUG:' alert-info',
+    message_const.INFO:'alert-info',
+    message_const.SUCCESS: 'alert-success',
+    message_const.WARNING: 'alert-warning',
+    message_const.ERROR: 'alert-danger',
+}
 

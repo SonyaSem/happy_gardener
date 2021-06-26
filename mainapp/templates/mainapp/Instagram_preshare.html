@@ -1,12 +1,32 @@
 
 <h3>Выберите поля, текст которых нужно добавить в пост</h3>
 
-<input type="checkbox" value=>Наименование: {{ one_plant.title }} </input><br>
-<input type="checkbox" value=>Вид: {{ one_plant.category }} </input><br>
-<input type="checkbox" value=>Описание: {{ one_plant.description }} </input><br>
-<input type="checkbox" value=>Место покупки: {{ one_plant.place_of_purchace }} </input><br>
-<input type="checkbox" value=>Дата покупки :{{ one_plant.date_of_purchase }} </input><br>
-<input type="checkbox" value=>Дата посадки: {{ one_plant.date_of_place }} </input><br>
-<input type="checkbox" value=>Дата сбора: {{ one_plant.date_of_collect }} </input><br>
-<input type="checkbox" value=>Дата последнего полива: {{ one_plant.date_of_last_water }} </input><br>
+<input type="checkbox" value={{ one_plant.title }}>
+Наименование: {{ one_plant.title }}
+</input><br>
+<input type="checkbox" value=>
+Вид: {{ one_plant.category }}
+</input><br>
+<input type="checkbox" value=>
+Описание: {{ one_plant.description }}
+</input><br>
+<input type="checkbox" value={{ one_plant.place_of_purchace }}>
+Место покупки: {{ one_plant.place_of_purchace }}
+</input><br>
+<input type="checkbox" value={{ one_plant.date_of_purchase }}>
+Дата покупки :{{ one_plant.date_of_purchase }}
+</input><br>
+<input type="checkbox" value={{ one_plant.date_of_place }}>
+Дата посадки: {{ one_plant.date_of_place }}
+</input><br>
+<input type="checkbox" value= {{ one_plant.date_of_collect }} >
+Дата сбора: {{ one_plant.date_of_collect }}
+</input><br>
+<input type="checkbox" value= {{ one_plant.date_of_last_water }}>
+Дата последнего полива: {{ one_plant.date_of_last_water }}
+</input><br>
 <!-- какой-нибудь цикл с выводом изображений с чекбоксами -->
+
+<a href="{% url 'inst_share_preview' %}">
+	<button type="submit" >Перейти к предпросмотру поста</button>
+</a>

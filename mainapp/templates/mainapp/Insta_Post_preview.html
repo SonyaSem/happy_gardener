@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Title</title>
-</head>
-<body>
+<h3>Ваш пост будет выглядеть так:</h3>
 
-</body>
-</html>
+<!-- Красивенький вывод сообщений -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+{% if messages %}
+	{% for message in messages %}
+		<div class="alert {{ message.tags }}" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		{{ message }}
+		</div>
+	{% endfor %}
+{% endif %}
+
+<!-- Здесь цикл с изображениями -->
+
