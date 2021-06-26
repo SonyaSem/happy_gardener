@@ -1,0 +1,29 @@
+
+
+{% block head_vk_share %}
+<title>
+	{{ one_plant.title }}
+</title>
+
+<!-- Умный скрипт от разрабов вк-->
+<script type="text/javascript" src="https://vk.com/js/api/share.js?95" charset="windows-1251"></script>
+{% endblock %}
+
+{% block body_vk_share %}
+<!-- Какая-то умная кнопка со скриптом от разрабов вк -->
+<script type="text/javascript">
+	document.write(VK.Share.button(
+		{
+			//url : "<на какую страницу будет ссылка>"
+			title: "{{ one_plant.title }}",
+			//image: "<адрес на фотку>"
+
+		},
+		{
+		    type: "custom",
+			text: "<img src=\"https://vk.com/images/share_32.png\" width=\"32\" height=\"32\" />"
+		}
+		));
+</script>
+{% endblock %}
+

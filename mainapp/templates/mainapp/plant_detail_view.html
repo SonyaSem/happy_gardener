@@ -1,4 +1,10 @@
 {% include 'mainapp/_navbar.html' %}
+<head>
+	{% block head_vk_share %}
+
+	{% endblock %}
+</head>
+
 
 {% block content %}
 
@@ -12,4 +18,6 @@
 <p>Дата сбора урожая - {{ one_plant.date_of_collect }}</p>
 <p>Дата последнего полива - {{ one_plant.date_of_last_water }}</p>
 
+	{% block body_vk_share %} {% endblock %}
 {% endblock %}
+{% include 'mainapp/vk_share.html'%}<!-- Кнопка поделиться в вк. В идеале в нее еще нужно добавить картинку/ссылку -->
