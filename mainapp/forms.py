@@ -9,7 +9,9 @@ class AddPlantForm(forms.ModelForm):
     class Meta:
         model = Plant
         fields = ('category', 'title', 'description', 'place_of_purchase', 'price', 'date_of_purchase', 'date_of_plant',
-    'date_of_collect', 'interval_of_water', 'photo', 'photo_comment',)
+    'date_of_collect', 'interval_of_water', 'photo', 'photo_comment', 'user')
+
+        widgets = {'user': forms.HiddenInput(), }
 
 
 class CreateUserForm(UserCreationForm):

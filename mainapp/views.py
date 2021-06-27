@@ -52,6 +52,7 @@ class PlantDetailView(ListView):
 
 
 def add_plant(request):
+    user = User.objects.get(pk=request.user.pk)
     if request.method == 'POST':
         plant_form = AddPlantForm(request.POST, request.FILES)
         if plant_form.is_valid():
@@ -59,7 +60,7 @@ def add_plant(request):
             return redirect('plant_list_view')
     else:
         plant_form = AddPlantForm(initial={"user": request.user})
-    context = {'form': plant_form}
+    context = {'form': plant_form, 'user': user}
 
     return render(request, 'mainapp/add_plant.html', context)
 
@@ -81,8 +82,8 @@ def user_logout(request):
     logout(request)
     return redirect('plant_list_view')
 
-class UnwaterAndUncollectedPlantsListView(ListView):
 
+class UnwaterAndUncollectedPlantsListView(ListView):
     model = Plant
     template_name = 'mainapp/plants_to_water_and_collect.html'
     context_object_name = 'plants'
@@ -101,7 +102,7 @@ class UpdatePlantView(UpdateView):
     model = Plant
     template_name = 'mainapp/update_plant.html'
     fields = ['category', 'title', 'description', 'place_of_purchase', 'price', 'date_of_purchase', 'date_of_plant',
-    'date_of_collect', 'interval_of_water']
+              'date_of_collect', 'interval_of_water']
 
 
 @login_required()
@@ -110,6 +111,3 @@ def delete_plant(request, pk):
     if request.user == plant.user:
         plant.delete()
     return HttpResponseRedirect('/')
-
-
-

@@ -2,12 +2,23 @@
 
 {% block content %}
 
+
+
+    {%if request.user == user%}
+
     <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.media }}
         {{ form.as_p }}
 
         <button type="submit">Добавить</button>
+
+     {% else %}
+
+
+    {% endif %}
+
+
 
 
     </form>
