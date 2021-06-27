@@ -52,7 +52,7 @@ class PlantDetailView(ListView):
 
 
 def add_plant(request):
-    user = User.objects.get(pk=request.user.pk)
+
     if request.method == 'POST':
         plant_form = AddPlantForm(request.POST, request.FILES)
         if plant_form.is_valid():
@@ -60,7 +60,7 @@ def add_plant(request):
             return redirect('plant_list_view')
     else:
         plant_form = AddPlantForm(initial={"user": request.user})
-    context = {'form': plant_form, 'user': user}
+    context = {'form': plant_form,}
 
     return render(request, 'mainapp/add_plant.html', context)
 

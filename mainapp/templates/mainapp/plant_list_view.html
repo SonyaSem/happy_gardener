@@ -2,11 +2,20 @@
 
 {% block content %}
 
+    {%if user.is_authenticated%}
+
     {% for plant in plants %}
 
 <p><a href="{{plant.get_absolute_url}}"> {{ plant.title }} </a></p>
 
-
     {% endfor %}
+
+   {% else %}
+
+        <h1>Вы должны войти в систему для просмотра растений</h1>
+
+    {% endif %}
+
+
 
 {% endblock %}

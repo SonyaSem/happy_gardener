@@ -2,6 +2,8 @@
 
 {% block content %}
 
+{%if user.is_authenticated%}
+
 <p>Наименование - {{ one_plant.title }}</p>
 <p>Вид - {{ one_plant.category }}</p>
 <p>Описание - {{ one_plant.description }}</p>
@@ -21,4 +23,10 @@
     <a href="{% url 'update_plant' pk=one_plant.pk %}">Редактировать</a>
 
     <a href='{% url 'my_delete_posts' pk=one_plant.pk %}'>Удалить</a>
+
+{% else %}
+
+     <h1>Вы должны войти в систему для просмотра растений</h1>
+
+{% endif %}
 {% endblock %}
