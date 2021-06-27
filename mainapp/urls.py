@@ -2,7 +2,7 @@ from django.contrib.auth.views import LoginView
 from django.urls import path
 
 from mainapp.views import PlantListView, PlantDetailView, add_plant, RegisterUserView, UserLoginView, user_logout, \
-    UnwaterAndUncollectedPlantsListView,UpdatePlantView
+    UnwaterAndUncollectedPlantsListView, UpdatePlantView, delete_plant
 
 urlpatterns = [
     path('', PlantListView.as_view(), name='plant_list_view'),
@@ -13,5 +13,6 @@ urlpatterns = [
     path('logout/', user_logout, name='logout'),
     path('unwater_uncollected/', UnwaterAndUncollectedPlantsListView.as_view(), name='unwater_uncollected'),
     path('update/<int:pk>', UpdatePlantView.as_view(), name='update_plant'),
+    path('delete/<int:pk>', delete_plant, name='my_delete_posts'),
 
 ]

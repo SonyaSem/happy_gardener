@@ -19,4 +19,6 @@
 {% endif %}
 
     <a href="{% url 'update_plant' pk=one_plant.pk %}">Редактировать</a>
+
+    <a href='{% url 'my_delete_posts' pk=one_plant.pk %}'>Удалить</a>
 {% endblock %}

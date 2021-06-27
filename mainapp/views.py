@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
@@ -101,3 +102,14 @@ class UpdatePlantView(UpdateView):
     template_name = 'mainapp/update_plant.html'
     fields = ['category', 'title', 'description', 'place_of_purchase', 'price', 'date_of_purchase', 'date_of_plant',
     'date_of_collect', 'interval_of_water']
+
+
+@login_required()
+def delete_plant(request, pk):
+    plant = Plant.objects.get(pk=pk)
+    if request.user == plant.user:
+        plant.delete()
+    return HttpResponseRedirect('/')
+
+
+
