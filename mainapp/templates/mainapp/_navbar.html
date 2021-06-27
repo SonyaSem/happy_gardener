@@ -1,9 +1,11 @@
+{% load  filterandtags%}
 {% block content %}
 
     <a href="{% url 'plant_list_view' %}" ; style="margin-right: 20px"> МОИ РАСТЕНИЯ</a>
     <a href="{% url 'add_plant' %}"; style="margin-right: 20px"> ДОБАВИТЬ РАСТЕНИЕ</a>
     <a href="{% url 'register' %}"; style="margin-right: 20px">Регистрация</a>
     <a href="{% url 'logout' %}"; style="margin-right: 20px">Выйти</a>
+
 
     {% if user.is_authenticated %}
 
@@ -14,5 +16,8 @@
         <a href="{% url 'login' %}">Войти</a>
 
     {% endif %}
+
+
+{% get_unwater_plants_for_notification %}
 
 {% endblock %}

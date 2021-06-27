@@ -9,7 +9,7 @@ class AddPlantForm(forms.ModelForm):
     class Meta:
         model = Plant
         fields = ('category', 'title', 'description', 'place_of_purchase', 'price', 'date_of_purchase', 'date_of_plant',
-    'date_of_collect', 'date_of_last_water', 'date_of_upcoming_water', 'interval_of_water')
+    'date_of_collect', 'interval_of_water')
 
 
 class CreateUserForm(UserCreationForm):
