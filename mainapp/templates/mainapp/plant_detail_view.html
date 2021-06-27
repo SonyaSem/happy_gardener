@@ -14,5 +14,9 @@
 <p>Дата предстоящего полива - {{ one_plant.date_of_upcoming_water}}</p>
 <p>Поливать каждый - {{ one_plant.interval_of_water}} день</p>
 
+{% if one_plant.photo %}
+    <img src="{{ one_plant.photo.url }}" alt="22">
+{% endif %}
+
     <a href="{% url 'update_plant' pk=one_plant.pk %}">Редактировать</a>
 {% endblock %}
