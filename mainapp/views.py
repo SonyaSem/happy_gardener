@@ -2,7 +2,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
 from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib import  messages
+from django.contrib import messages
 
 from django.shortcuts import render, redirect
 
@@ -14,7 +14,6 @@ from django.http import HttpResponse
 from mainapp.forms import AddPlantForm, CreateUserForm, UserLoginForm
 from mainapp.models import Category, Plant
 from . import ShareService
-
 
 
 class PlantListView(ListView):
@@ -72,30 +71,33 @@ class Insta_share_choice(DetailView):
 
 
 def instagram_share_preview(request):
-    if request.method=='POST':
+    if request.method == 'POST':
         choosen_data_for_post = request.POST.getlist('check')
-        final_text=''.join(choosen_data_for_post)
-        if len(final_text)> ShareService.INSTAGRAM_MAX_CAPTION_SIMBOLS_AMOUNT:
-            messages.error(request, "Внимание, количество символов описания было превышено на "+
-                           str(len(final_text)-ShareService.INSTAGRAM_MAX_CAPTION_SIMBOLS_AMOUNT)+" символов")
+        final_text = ''.join(choosen_data_for_post)
+        if len(final_text) > ShareService.INSTAGRAM_MAX_CAPTION_SIMBOLS_AMOUNT:
+            messages.error(request, "Внимание, количество символов описания было превышено на " +
+                           str(len(final_text) - ShareService.INSTAGRAM_MAX_CAPTION_SIMBOLS_AMOUNT) + " символов")
         if 'images' not in request.POST:
             messages.error(request, "Внимание, ни одна фотография не была выбрана!")
-            images=[]
+            images = []
         else:
             images = request.POST.getlist('images')
-            if len(images)> ShareService.INSTAGRAM_MAX_PICTURE_AMOUNT:
-                messages.error(request, "Внимание, число фото в одном посте не может быть больше: "+
+            if len(images) > ShareService.INSTAGRAM_MAX_PICTURE_AMOUNT:
+                messages.error(request, "Внимание, число фото в одном посте не может быть больше: " +
                                str(ShareService.INSTAGRAM_MAX_PICTURE_AMOUNT))
     return render(request, 'mainapp/Insta_Post_preview.html', {'text': final_text,
-                                                               'images':images})
+                                                               'images': images})
+
 
 def post_to_insta(request):
-    if request.method=='POST':
-        caption = request.POST.getlist('caption')
-        images = request.FILES.getlist('images')
-        login = request.POST.getlist('login')
-        password = request.POST.getlist('password')
-        print(caption,images,login,password)
-        #ShareService.share_to_instagram(login[0],password[0],images,caption[0])
-        messages.success(request,"Пост был успешно отправлен в инстграм")
+    if request.method == 'POST':
+        caption = request.POST.get('caption')
+        images = request.POST.getlist('picture')
+        login = request.POST.get('login')
+        password = request.POST.get('password')
+        for index, image in enumerate(images):
+            images[index] = '.' + images[index]
+        print(login, password, images, caption)
+        ShareService.share_to_instagram(login, password, images, caption)
+        messages.success(request, "Пост был успешно отправлен в инстграм")
     return HttpResponse("Всё ок")

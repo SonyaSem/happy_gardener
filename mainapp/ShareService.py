@@ -25,4 +25,3 @@ def share_to_instagram(login: str, password: str, images:List[Path], caption: st
         bot = Client()
         bot.login(login, password)
         bot.album_upload(images, caption=caption)
-

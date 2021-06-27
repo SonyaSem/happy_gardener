@@ -22,8 +22,10 @@
 	<label>Фото:</label>
 
 	<!--приложенные фото -->
+
 	{% for image in images  %}
-		<input type="checkbox" value="{{ image }}" name="images">
+		<input type="hidden" name="picture" value="{{ image }}" >
+		<img src="{{ image }}">
 	{% endfor %}
 
 	{% if images %}
