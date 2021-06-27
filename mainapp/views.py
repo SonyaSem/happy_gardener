@@ -10,6 +10,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView
 from django.http import HttpResponse
+from pathlib import Path
 
 from mainapp.forms import AddPlantForm, CreateUserForm, UserLoginForm
 from mainapp.models import Category, Plant
@@ -96,7 +97,7 @@ def post_to_insta(request):
         login = request.POST.get('login')
         password = request.POST.get('password')
         for index, image in enumerate(images):
-            images[index] = '.' + images[index]
+            images[index] = '..'+images[index]
         print(login, password, images, caption)
         ShareService.share_to_instagram(login, password, images, caption)
         messages.success(request, "Пост был успешно отправлен в инстграм")
