@@ -3,13 +3,14 @@
 
 {% block content %}
 
-    <form method="POST">
+    <form method="POST" action="" enctype="multipart/form-data">
 <div style="text-align:center">
         {% csrf_token %}
-        {{ form.as_p }}
-        <input required name="image" type="file" class="form-control-file">
+    {%for form2 in form %}
+        {{ form2.as_p }}
+    {% endfor %}
     <br>
-        <button class="shine-button">Добавить растение</button>
+        <button type="submit" value="send" class="shine-button">Добавить растение</button>
 <br><br><br><br>
 
     </div>

@@ -19,4 +19,11 @@
     <button class="shine-button shine-button-red" style="font-size:20px;width:200px">Удалить</button>
     </div>
 <h2 style="margin:20px 10px 20px 10px">{{ one_plant.description }}</h2>
+<div style="height:{{height}}px;background-color:#7affbf;text-align:center">
+    <h2>Изображения</h2>
+    {% for img in images %}
+        <img src="{{img.image.url}}" style="width: 250px; height: 300px; margin:10px 10px 10px 10px; outline: 4px solid #7affbf">
+    {% endfor %}
+</div>
+<br>
 {% endblock %}

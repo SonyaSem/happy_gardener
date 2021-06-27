@@ -37,3 +37,8 @@ class Plant(models.Model):
     class Meta:
         verbose_name = "Растение"
         verbose_name_plural = "Растения"
+
+
+class Image(models.Model):
+    plant = models.ForeignKey(Plant, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='images/')
