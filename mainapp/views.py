@@ -27,7 +27,7 @@ def plant_detail(request, plant_pk):
     plant = Plant.objects.get(id=plant_pk)
     images = Image.objects.filter(plant_id=plant_pk)
     if len(images) <= 3:
-        height = 340
+        height = 380
     elif len(images) <= 6:
         height = 700
     else:
