@@ -24,10 +24,16 @@
 	<input type="checkbox" name="check" value= "Дата сбора: {{ one_plant.date_of_collect }} &#13;&#10">
 	Дата сбора: {{ one_plant.date_of_collect }}
 	</input><br>
-	<input type="checkbox" name="water_date" value= "Последний полив: {{ one_plant.date_of_last_water }}&#13;&#10">
+	<input type="checkbox" name="check" value= "Последний полив: {{ one_plant.date_of_last_water }}&#13;&#10">
 	Дата последнего полива: {{ one_plant.date_of_last_water }}
 	</input><br>
+
 	<!-- какой-нибудь цикл с выводом изображений с чекбоксами -->
+	<input type="checkbox" name="images" value="{{ one_plant.photo.file}}">
+	Изображение: <img src="{{ one_plant.photo.file }}" alt="">
+	</input><br>
+
+
 
 	<a href="{% url 'inst_share_preview' %}">
 		<button type="submit" >Перейти к предпросмотру поста</button>

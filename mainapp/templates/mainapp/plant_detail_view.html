@@ -1,4 +1,5 @@
 {% include 'mainapp/_navbar.html' %}
+
 <head>
 	{% block head_vk_share %}{% endblock %}
 </head>
@@ -20,7 +21,7 @@
 
 <!--я  не дизайнер, поэтому просто кнопка-->
 <button type="button" onclick="location.href='{% url 'instagram_share_choice' one_plant.id %}'">Поделиться в инсте</button>
-
-
 	{% block body_vk_share %} {% endblock %}
 {% endblock %}
+
+{% include 'mainapp/vk_share.html' %}

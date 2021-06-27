@@ -14,20 +14,29 @@
 	{% endfor %}
 {% endif %}
 
-<form method="post">
+<form method="post" action="{% url 'insta_post' %}">
 	<label>Описание:</label>
 	{% csrf_token %}
 	<!--просто текст поста -->
-	<textarea class="form-control" rows="5" name="caption">{{ text }}</textarea>
+	<input type="text" class="form-control" rows="5" value="{{ text }}" name="caption"/><br>
 	<label>Фото:</label>
+
 	<!--приложенные фото -->
+	{% for image in images  %}
+		<input type="checkbox" value="{{ image }}" name="images">
+	{% endfor %}
+
+	{% if images %}
 	<!--форма для входа в инсту -->
-	<label>Укажите данные от вашего аккаунта Instagram:</label>
-	<input type="text"  class="form-control-plaintext" placeholder="Имя пользователя" name="login">
-	<input type="password" class="form-control" placeholder="Пароль" name="password">
-	<a href="{% url 'inst_share_preview' %}">
-		<button type="submit" >Запостить</button>
-	</a>
+		<label>Укажите данные от вашего аккаунта Instagram:</label>
+		<input type="text"  class="form-control-plaintext" placeholder="Имя пользователя" name="login">
+		<input type="password" class="form-control" placeholder="Пароль" name="password">
+
+		<a href="{% url 'insta_post' %}">
+			<button type="submit" >Запостить</button>
+		</a>
+	{% endif %}
+
 </form>
 
 

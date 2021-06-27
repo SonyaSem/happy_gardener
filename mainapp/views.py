@@ -9,6 +9,7 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView
+from django.http import HttpResponse
 
 from mainapp.forms import AddPlantForm, CreateUserForm, UserLoginForm
 from mainapp.models import Category, Plant
@@ -77,18 +78,24 @@ def instagram_share_preview(request):
         if len(final_text)> ShareService.INSTAGRAM_MAX_CAPTION_SIMBOLS_AMOUNT:
             messages.error(request, "Внимание, количество символов описания было превышено на "+
                            str(len(final_text)-ShareService.INSTAGRAM_MAX_CAPTION_SIMBOLS_AMOUNT)+" символов")
-    return render(request, 'mainapp/Insta_Post_preview.html', {'text': final_text})
+        if 'images' not in request.POST:
+            messages.error(request, "Внимание, ни одна фотография не была выбрана!")
+            images=[]
+        else:
+            images = request.POST.getlist('images')
+            if len(images)> ShareService.INSTAGRAM_MAX_PICTURE_AMOUNT:
+                messages.error(request, "Внимание, число фото в одном посте не может быть больше: "+
+                               str(ShareService.INSTAGRAM_MAX_PICTURE_AMOUNT))
+    return render(request, 'mainapp/Insta_Post_preview.html', {'text': final_text,
+                                                               'images':images})
 
 def post_to_insta(request):
     if request.method=='POST':
         caption = request.POST.getlist('caption')
-        if len(caption)>ShareService.INSTAGRAM_MAX_CAPTION_SIMBOLS_AMOUNT:
-            messages.error(request, "Внимание, количество символов описания было превышено на " +
-                           str(len(caption) - ShareService.INSTAGRAM_MAX_CAPTION_SIMBOLS_AMOUNT) + " символов")
-        else:
-            ShareService.share_to_instagram(request.POST.getlist('login'),
-                                            request.POST.getlist('password'),
-                                            #сюда вставить список с путями к картинкам,
-                                            request.POST.getlist(caption))
-            messages.success(request,"Пост был успешно отправлен в инстграм")
-    return render(request, 'mainapp/Insta_Post_preview.html', {'text': caption})
+        images = request.FILES.getlist('images')
+        login = request.POST.getlist('login')
+        password = request.POST.getlist('password')
+        print(caption,images,login,password)
+        #ShareService.share_to_instagram(login[0],password[0],images,caption[0])
+        messages.success(request,"Пост был успешно отправлен в инстграм")
+    return HttpResponse("Всё ок")
