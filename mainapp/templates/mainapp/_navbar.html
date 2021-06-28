@@ -18,6 +18,9 @@
     {% endif %}
 
 
-{% get_unwater_plants_for_notification %}
+    <a href="{% url 'unwater_uncollected' %}">{% get_unwater_plants_for_notification %}</a>
+    <a href="{% url 'unwater_uncollected' %}">{% get_uncollected_plants_for_notification %} </a>
+
+
 
 {% endblock %}

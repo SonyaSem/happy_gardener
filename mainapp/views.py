@@ -77,3 +77,18 @@ class UserLoginView(LoginView):
 def user_logout(request):
     logout(request)
     return redirect('plant_list_view')
+
+class UnwaterAndUncollectedPlantsListView(ListView):
+
+    model = Plant
+    template_name = 'mainapp/plants_to_water_and_collect.html'
+    context_object_name = 'plants'
+
+    def get_queryset(self):
+        return Plant.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['current_date'] = date.today()
+
+        return context

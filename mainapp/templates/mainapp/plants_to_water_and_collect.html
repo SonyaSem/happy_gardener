@@ -1,0 +1,35 @@
+{% include 'mainapp/_navbar.html' %}
+
+{% block content %}
+
+
+
+
+    <h1>Сегодня нужно полить следующие растения:</h1>
+
+    {% for plant in plants %}
+
+        {% if current_date == plant.date_of_upcoming_water%}
+
+            <p>{{ plant.title }}</p>
+
+        {% endif %}
+
+    {% endfor %}
+
+
+
+    <h1>Сегодня нужно собрать следующие растения:</h1>
+
+        {% for plant in plants %}
+
+        {% if current_date == plant.date_of_collect%}
+
+            <p>{{ plant.title }}</p>
+
+        {% endif %}
+
+
+    {% endfor %}
+
+{% endblock %}
