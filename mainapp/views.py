@@ -55,6 +55,7 @@ def add_plant(request):
         plant_form = AddPlantForm(request.POST)
         if plant_form.is_valid():
             plant_form.save()
+            return redirect('plant_list_view')
     else:
         plant_form = AddPlantForm(initial={"user": request.user})
     context = {'form': plant_form}
