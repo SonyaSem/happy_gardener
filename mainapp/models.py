@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from datetime import date
 
@@ -17,6 +18,7 @@ class Category(models.Model):
 
 
 class Plant(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='category_from_user')
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="plant")
     title = models.CharField(max_length=256, verbose_name="Название растения", unique=True)
     description = models.TextField(verbose_name="Описание растения")

@@ -2,14 +2,15 @@ import math
 from datetime import date, timedelta, datetime
 
 from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
 from django.contrib.messages.views import SuccessMessageMixin
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView
 
 from mainapp.forms import AddPlantForm, CreateUserForm, UserLoginForm
 from mainapp.models import Category, Plant
@@ -55,7 +56,7 @@ def add_plant(request):
         if plant_form.is_valid():
             plant_form.save()
     else:
-        plant_form = AddPlantForm()
+        plant_form = AddPlantForm(initial={"user": request.user})
     context = {'form': plant_form}
 
     return render(request, 'mainapp/add_plant.html', context)
@@ -92,3 +93,10 @@ class UnwaterAndUncollectedPlantsListView(ListView):
         context['current_date'] = date.today()
 
         return context
+
+
+class UpdatePlantView(UpdateView):
+    model = Plant
+    template_name = 'mainapp/update_plant.html'
+    fields = ['category', 'title', 'description', 'place_of_purchase', 'price', 'date_of_purchase', 'date_of_plant',
+    'date_of_collect', 'interval_of_water']

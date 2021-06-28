@@ -1,0 +1,15 @@
+{% include 'mainapp/_navbar.html' %}
+
+{% block content %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button>Сохранить изменения</button>
+
+        <input required name="image" type="file" class="form-control-file">
+    </form>
+
+{% endblock %}
