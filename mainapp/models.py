@@ -20,12 +20,16 @@ class Plant(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="plant")
     title = models.CharField(max_length=256, verbose_name="Название растения", unique=True)
     description = models.TextField(verbose_name="Описание растения")
-    date_of_plant = models.DateField(default=date.today, verbose_name="Дата посадки", null=True)
+    photo = models.ImageField(verbose_name="Фото", upload_to='static', null=True, blank=True)
+    photo_comment = models.CharField (max_length=300, verbose_name="Комментарий", blank=True)
     place_of_purchase = models.CharField(max_length=256, verbose_name="Место покупки")
     date_of_purchase = models.DateField(default=date.today, verbose_name="Дата покупки", null=True)
     price = models.DecimalField(max_digits=7, decimal_places=2, verbose_name="Цена")
-    date_of_collect = models.DateField(default=date.today, verbose_name="Дата сбора", null=True)
+    date_of_plant = models.DateField(default=date.today, verbose_name="Дата посадки", null=True)
     date_of_last_water = models.DateField(default=date.today, verbose_name="Дата последнего полива", null=True)
+    interval_of_water = models.SmallIntegerField(verbose_name="Интервал полива", null=True)
+    date_of_upcoming_water = models.DateField(default=date.today, verbose_name="Дата предстоящего полива", null=True)
+    date_of_collect = models.DateField(default=date.today, verbose_name="Дата сбора", null=True)
 
     def __str__(self):
         return str(self.title)
