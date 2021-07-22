@@ -1,3 +1,4 @@
+import math
 from datetime import date, timedelta, datetime
 
 from django.contrib.auth import logout
@@ -17,14 +18,17 @@ from mainapp.models import Category, Plant
 class PlantListView(ListView):
 
     def get(self, request, *args, **kwargs):
-
         for plant in Plant.objects.all():
             current_plant = Plant.objects.get(pk=plant.pk)
             current_date = date.today()
-            if current_date == current_plant.date_of_upcoming_water:
-                Plant.objects.filter(pk=plant.pk).update(date_of_last_water=current_date)
+            days_from_plant = current_date - current_plant.date_of_plant
+            intervals_to_next_water = days_from_plant.days / plant.interval_of_water
+            days_to_next_water = timedelta(days=math.ceil(intervals_to_next_water) * plant.interval_of_water)
+            days_to_previous_water = timedelta(days=math.floor(intervals_to_next_water) * plant.interval_of_water)
             Plant.objects.filter(pk=plant.pk).update(
-                date_of_upcoming_water=(current_date + timedelta(days=plant.interval_of_water)))
+                date_of_last_water=current_plant.date_of_plant + days_to_previous_water)
+            Plant.objects.filter(pk=plant.pk).update(
+                date_of_upcoming_water=current_plant.date_of_plant + days_to_next_water)
 
         return super(PlantListView, self).get(request, *args, **kwargs)
 
